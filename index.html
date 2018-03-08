@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>stated</title>
+  <meta name="theme-color" content="#222127">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" />
+  <style>
+    .split-container {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+	  display: flex;
+	  height: 100%;
+    }
+
+    .split-item {
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 50%;
+    }
+
+    code {
+      font-size: 12px;
+    }
+    pre {
+	  background: white;
+	  overflow: auto;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    }
+  </style>
+<link href="main.2e6839adc4e64f70ec9898eefea8aeaf.bundle.css" rel="stylesheet"></head>
+<body>
+  <div class="split-container">
+    <div id="app" class="split-item"></div>
+    <div class="split-item">
+      <pre>
+        <code class="typescript">
+import { Container, Subscribe } from 'dojo2-stateful';
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { w, v } from '@dojo/widget-core/d';
+import * as css from './App.m.css';
+
+interface CounterState {
+  count: number
+};
+
+class CounterContainer extends Container&lt;CounterState&gt; {
+  state = {
+    count: 0
+  };
+  increment = (step: number) =&gt; {
+    this.setState({ count: this.state.count + step });
+  }
+  decrement = (step: number) =&gt; {
+    this.setState({ count: this.state.count - step });
+  }
+}
+
+class StepContainer extends Container&lt;{ step: number }&gt; {
+  state = {
+    step: 1
+  };
+  setStep = (step: number) =&gt; {
+    this.setState({ step });
+  }
+}
+
+class Counter extends WidgetBase {
+  render() {
+    return w(Subscribe, {
+      to: [CounterContainer, StepContainer],
+      render: (counter: CounterContainer, step: StepContainer) =&gt; {
+        return v('div', [
+          v('button', {
+            classes: css.counterButton,
+            onclick: () =&gt; counter.decrement(step.state.step)
+          }, [ 'Decrement' ]),
+          v('span', {
+            classes: [ css.label, css.counter ]
+          }, [ `&#36;{counter.state.count}` ]),
+          v('button', {
+            classes: css.counterButton,
+            onclick: () =&gt; counter.increment(step.state.step)
+          }, [ 'Increment' ])
+        ])
+      }
+    });
+  }
+}
+
+class Count extends WidgetBase {
+  render() {
+    return w(Subscribe, { to: [CounterContainer], render: (counter: CounterContainer) =&gt; {
+      return v('div', { classes: css.controlContainer }, [
+        v('span', { classes: css.label }, [ 'Current Count:' ]),
+        v('span', { classes: css.label }, [ `&#36;{counter.state.count}` ])
+      ])
+    }})
+  }
+}
+
+class Step extends WidgetBase {
+  render() {
+    return w(Subscribe, { to: [StepContainer], render: (step: StepContainer) =&gt; {
+      return v('div', { classes: css.controlContainer }, [
+        v('span', { classes: css.label }, [ 'Set increment value: ' ]),
+        v('input', {
+          type: 'number',
+          oninput: (event: any) =&gt; step.setStep(parseInt(event.target.value))
+        })
+      ]);
+    }})
+  }
+}
+
+export default class App extends WidgetBase {
+  render() {
+    return v('div', [ w(Counter, {}), w(Count, {}), w(Step, {}) ]);
+  }
+}
+        </code>
+      </pre>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/typescript.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript" src="runtime.d41d8cd98f00b204e980.bundle.js"></script><script type="text/javascript" src="main.d25232199b73bdb9fcc7.bundle.js"></script></body>
+</html>

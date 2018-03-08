@@ -1,0 +1,63 @@
+/*!
+ * 
+ * [Dojo](https://dojo.io/)
+ * Copyright [JS Foundation](https://js.foundation/) & contributors
+ * [New BSD license](https://github.com/dojo/meta/blob/master/LICENSE)
+ * All rights reserved
+ * 
+ */
+html, body {
+    height: 100%;
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	line-height: 1.4em;
+	background: #f5f5f5;
+	color: #4d4d4d;
+	margin: 0 auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-weight: 300;
+}
+.xO8ZRuH9 {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-top: 10px;
+}
+
+._2TaQvVzU {
+    background-color: #14b1ff;
+    border: 1px solid #d6dde2;
+    color: #cc0c9f;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 24px;
+    outline: none;
+    min-width: 160px;
+    padding: 8px;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    border-radius: 5px;
+}
+
+._3TieXBPA {
+    margin: 10px;
+    min-width: 50px;
+    display: inline-block;
+    text-align: center;
+}
+
+._22IFvjlT {
+    color: #3c3b3e;
+    font-weight: bold;
+}
+
+/*# sourceMappingURL=main.2e6839adc4e64f70ec9898eefea8aeaf.bundle.css.map*/
